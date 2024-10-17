@@ -1,8 +1,8 @@
-import express from 'express'
-import { createAdmin } from '../controller/Admin.js'
+import express from "express";
+import { createUser, getuser } from "../controller/Admin.js";
 
+const router = express.Router();
+router.post("/create", createUser);
+router.get("/create", getuser);
 
- const router = express.Router()
- router.post('/create',createAdmin)
- 
- export default router ;
+export default router;
