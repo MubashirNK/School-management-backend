@@ -1,14 +1,15 @@
+import 'dotenv/config';
 import express from "express";
 import mongoose from "mongoose";
-import AdminR from "./routes/AdminR.js";
-import fileUpload from "express-fileupload";
-import adminModel from "./models/AdminM.js";
-// const express = require('express')
+import AdminRoutes from "./routes/AdminR.js";
+import userModel from "./models/AdminM.js";
 import { connectDB } from "./config.js";
+import authRoutes from "./routes/authR.js"
+import bodyParser from "body-parser";
 
 const app = express();
+app.use(bodyParser.json());
 
-// const mongoose = require('mongoose');
 
 app.use(express.json());
 connectDB();
@@ -19,4 +20,5 @@ app.listen(port, () => {
 });
 
 
-app.use("/api/admin", AdminR);
+app.use("/api/auth",authRoutes)
+app.use("/api/admin", AdminRoutes);
